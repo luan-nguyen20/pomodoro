@@ -1,24 +1,32 @@
-let sessionMins = 25;
-let breakMins = 5;
+let sessionMins = 0.2;
+let breakMins = 0.1;
 
 const mainTimeLabel = document.querySelector("#mainTimeLabel");
 const mainSquareLabel = document.querySelector("#mainSquareLabel");
+
+let finished = false;
 
 function countDown(sessionOrBreakStr){
     let now = new Date().getTime(); // Get today's date and time in millisecs
     let countDownMins = 0;
 
-    if(sessionOrBreakStr.toUpperCase()==='SESSION'){ countDownMins = sessionMins; }
-    else{ countDownMins = breakMins; }
+    if(sessionOrBreakStr.toUpperCase()==='SESSION'){ 
+        countDownMins = sessionMins; 
+        mainSquareLabel.textContent = 'SESSION';
+    }
+    else if(sessionOrBreakStr.toUpperCase()==='BREAK') { 
+        mainSquareLabel.textContent = 'BREAK';
+        countDownMins = breakMins; 
+    }
 
-    let sessionDeadline = now + countDownMins*60000; //now + countdown mins in millisecs
+    let deadline = now + countDownMins*60000; //now + countdown mins in millisecs
 
     // Update the count down every 1 second
     let x = setInterval(function() {
         var now = new Date().getTime();
 
         // Find the distance between now and the deadline (in millisecs)
-        var distance = sessionDeadline-now;
+        var distance = deadline - now;
 
         // Time calculations for hours, minutes and seconds
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -31,9 +39,33 @@ function countDown(sessionOrBreakStr){
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
-            mainTimeLabel.textContent = "EXPIRED";
+            mainTimeLabel.textContent = '00:00:00';
+            mainSquareLabel.textContent = 'FINISHED';
         }
     },1000)
 }
+
+function startCountDown(){
+    finished = false;
+    countDown('session');
+    while(!finished){
+        countDown('break');
+        countDown('session');
+    }
+}
+
+function stopCountDown(){
+    finished = true;
+}
+
+const startBtn = document.querySelector("#startBtn");
+startBtn.addEventListener('click', function(){
+    startCountDown();
+});
+
+const stopBtn = document.querySelector("#stopBtn");
+stopBtn.addEventListener('click', function(){
+    stopCountDown();
+});
 
 

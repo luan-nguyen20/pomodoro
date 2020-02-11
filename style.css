@@ -85,6 +85,7 @@ header{
     grid-row-end:13;
     grid-column-start:3;
     grid-column-end:11;
+    border-radius: 10px;
 }
 
 #mainSquareLabel{

@@ -1,0 +1,22 @@
+html{
+    height: 100%;
+}
+
+.wrapper{
+    display: grid;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    padding: 5px, 5px; /*outer gap*/
+    grid-template-columns: repeat(12,1fr); /*12 col equal height*/
+    grid-template-rows: repeat(12,1fr);
+}
+
+header{
+    grid-row-start:2;
+    grid-row-end:4;
+    grid-column-start:5;
+    grid-column-end:9;
+}

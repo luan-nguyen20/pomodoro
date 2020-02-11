@@ -2,10 +2,16 @@ let sessionMins = 25;
 let breakMins = 5;
 
 const mainTimeLabel = document.querySelector("#mainTimeLabel");
+const mainSquareLabel = document.querySelector("#mainSquareLabel");
 
-function sessionCountDown(){
+function countDown(sessionOrBreakStr){
     let now = new Date().getTime(); // Get today's date and time in millisecs
-    let sessionDeadline = now + sessionMins*60000; //now + session mins in millisecs
+    let countDownMins = 0;
+
+    if(sessionOrBreakStr.toUpperCase()==='SESSION'){ countDownMins = sessionMins; }
+    else{ countDownMins = breakMins; }
+
+    let sessionDeadline = now + countDownMins*60000; //now + countdown mins in millisecs
 
     // Update the count down every 1 second
     let x = setInterval(function() {
@@ -29,4 +35,5 @@ function sessionCountDown(){
         }
     },1000)
 }
+
 

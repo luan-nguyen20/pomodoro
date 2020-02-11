@@ -67,3 +67,60 @@ header{
     grid-column-start:8;
     grid-column-end:11;
 }
+
+#mainSquare{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(3,1fr);
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    grid-row-start:8;
+    grid-row-end:13;
+    grid-column-start:3;
+    grid-column-end:11;
+}
+
+#mainSquareLabel{
+    grid-row-start:1;
+    grid-row-end:2;
+    grid-column-start:1;
+    grid-column-end:13;
+}
+
+#mainTimeLabel{
+    grid-row-start:2;
+    grid-row-end:3;
+    grid-column-start:1;
+    grid-column-end:13;
+}
+
+#resetBtn{
+    grid-row-start:3;
+    grid-row-end:4;
+    grid-column-start:1;
+    grid-column-end:4;
+}
+
+#pauseBtn{
+    grid-row-start:3;
+    grid-row-end:4;
+    grid-column-start:4;
+    grid-column-end:7;
+}
+
+#playBtn{
+    grid-row-start:3;
+    grid-row-end:4;
+    grid-column-start:7;
+    grid-column-end:10;
+}
+
+#stopBtn{
+    grid-row-start:3;
+    grid-row-end:4;
+    grid-column-start:10;
+    grid-column-end:13;
+}

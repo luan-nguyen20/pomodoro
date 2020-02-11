@@ -7,8 +7,22 @@
     </head>
     <body>
         <div class="wrapper">
-            <header>POMODORO TIMER</header>
+            <header class="header"><p id="headerTxt">POMODORO TIMER</p></header>
+
+            <div class="square" id="sessionSquare">
+                <div class="squareLabel"><p id="sessionSquareLabel">SESSION</p></div>
+                <div class="changeTimeBtn"><button id="sessionDecreaseTimeBtn">Decrease</button></div>
+                <div class="timeLabel"><p id="sessionTimeLabel">25</p></div>
+                <div class="changeTimeBtn"><button id="sessionIncreaseTimeBtn">Increase</button></div>
             </div>
+
+            <div class="square" id="breakSquare">
+                <div class="squareLabel"><p id="breakSquareLabel">BREAK</p></div>
+                <div class="changeTimeBtn"><button id="breakDecreaseTimeBtn">Decrease</button></div>
+                <div class="timeLabel"><p id="breakTimeLabel">5</p></div>
+                <div class="changeTimeBtn"><button id="breakIncreaseTimeBtn">Increase</button></div>
+            </div>
+        </div>
     </body>
     <script src="script.js"></script>
 </html>

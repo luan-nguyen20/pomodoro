@@ -1,5 +1,6 @@
-html{
+html, body{
     height: 100%;
+    width: 100%;
 }
 
 .wrapper{
@@ -14,9 +15,55 @@ html{
     grid-template-rows: repeat(12,1fr);
 }
 
+.square, .changeTimeBtn, .timeLabel{
+    background-color: rgb(83, 83, 83);
+    color: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
 header{
     grid-row-start:2;
     grid-row-end:4;
     grid-column-start:5;
     grid-column-end:9;
+    font-weight: bold;
+}
+
+#sessionSquare{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    grid-row-start:4;
+    grid-row-end:6;
+    grid-column-start:3;
+    grid-column-end:6;
+}
+
+.squareLabel{
+    grid-row-start:1;
+    grid-row-end:2;
+    grid-column-start:1;
+    grid-column-end:4;
+}
+
+#breakSquare{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    grid-row-start:4;
+    grid-row-end:6;
+    grid-column-start:8;
+    grid-column-end:11;
 }

@@ -3,6 +3,10 @@ html, body{
     width: 100%;
 }
 
+html{
+    background-color: lightblue;
+}
+
 .wrapper{
     display: grid;
     align-items: center;
@@ -10,7 +14,7 @@ html, body{
     text-align: center;
     height: 100%;
     width: 100%;
-    padding: 5px, 5px; /*outer gap*/
+    padding: 5px, 5px; /* outer gap */
     grid-template-columns: repeat(12,1fr); /*12 col equal height*/
     grid-template-rows: repeat(12,1fr);
 }

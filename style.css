@@ -115,7 +115,7 @@ header{
     grid-column-end:7;
 }
 
-#playBtn{
+#startBtn{
     grid-row-start:3;
     grid-row-end:4;
     grid-column-start:7;

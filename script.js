@@ -1,3 +1,15 @@
+function padded(num){
+    let paddedNumStr = '';
+    if(num<10){
+        paddedNumStr = '0' + String(num);
+    }
+    else{
+        paddedNumStr = String(num);
+    }
+
+    return paddedNumStr;
+}
+
 let sessionMins = 0.2;
 let breakMins = 0.1;
 
@@ -7,6 +19,8 @@ const mainSquareLabel = document.querySelector("#mainSquareLabel");
 let finished = false;
 
 function countDown(sessionOrBreakStr){
+    if(finished===true){return;}
+
     let now = new Date().getTime(); // Get today's date and time in millisecs
     let countDownMins = 0;
 
@@ -34,13 +48,19 @@ function countDown(sessionOrBreakStr){
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Display the result in main time label
-        mainTimeLabel.textContent = hours + ":" + minutes + ":" + seconds;
+        mainTimeLabel.textContent = padded(hours) + ":" + padded(minutes) + ":" + padded(seconds);
 
-        // If the count down is finished, write some text
+        // If session/break count down is finished, switch to break/session countdown
         if (distance < 0) {
             clearInterval(x);
-            mainTimeLabel.textContent = '00:00:00';
-            mainSquareLabel.textContent = 'FINISHED';
+            if(mainSquareLabel.textContent==='SESSION'){
+                mainTimeLabel.textContent = '00:00:00';
+                countDown('break');
+            }
+            else if(mainSquareLabel.textContent==='BREAK'){
+                mainTimeLabel.textContent = '00:00:00';
+                countDown('session');
+            }
         }
     },1000)
 }
@@ -48,10 +68,6 @@ function countDown(sessionOrBreakStr){
 function startCountDown(){
     finished = false;
     countDown('session');
-    while(!finished){
-        countDown('break');
-        countDown('session');
-    }
 }
 
 function stopCountDown(){

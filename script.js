@@ -19,8 +19,6 @@ const mainSquareLabel = document.querySelector("#mainSquareLabel");
 let finished = false;
 
 function countDown(sessionOrBreakStr){
-    if(finished===true){return;}
-
     let now = new Date().getTime(); // Get today's date and time in millisecs
     let countDownMins = 0;
 
@@ -37,6 +35,13 @@ function countDown(sessionOrBreakStr){
 
     // Update the count down every 1 second
     let x = setInterval(function() {
+        if(finished===true){
+            mainTimeLabel.textContent = '00:00:00';
+            mainSquareLabel.textContent = 'SESSION/BREAK';
+            clearInterval(x);
+            return;
+        }
+
         var now = new Date().getTime();
 
         // Find the distance between now and the deadline (in millisecs)

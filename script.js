@@ -66,7 +66,7 @@ function disableTimeChange(){
 function enableTimeChange(){
     enableSessionDecreaseBtn();
     enableSessionIncreaseBtn();
-    enableBreaknDecreaseBtn();
+    enableBreakDecreaseBtn();
     enableBreakIncreaseBtn();
 }
 
@@ -84,6 +84,7 @@ updateBreakTimeLabel();
 const startBtn = document.querySelector("#startBtn");
 const stopBtn = document.querySelector("#stopBtn");
 const pauseBtn = document.querySelector("#pauseBtn");
+const resetBtn = document.querySelector("#resetBtn");
 
 function disableStartBtn(){ startBtn.disabled = true;}
 function disablePauseBtn(){ pauseBtn.disabled = true;}
@@ -129,7 +130,7 @@ function countDown(sessionOrBreakStr){
 
         if(finished===true){
             clearInterval(x);
-            mainTimeLabel.textContent = '00:00:00';
+            displayTime([0,0,0]);
             mainSquareLabel.textContent = 'SESSION/BREAK';
             disablePauseBtn();
             disableStopBtn();
@@ -231,4 +232,13 @@ sessionIncreaseTimeBtn.addEventListener('click',increaseSessionTime);
 breakDecreaseTimeBtn.addEventListener('click',decreaseBreakTime);
 breakIncreaseTimeBtn.addEventListener('click',increaseBreakTime);
 
+function reset(){
+    stopCountDown();
+    sessionMins = defaultSessionMins;
+    breakMins = defaultBreakMins;
+    updateSessionTimeLabel();
+    updateBreakTimeLabel();
+}
+
+resetBtn.addEventListener('click',reset);
 

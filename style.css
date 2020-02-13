@@ -26,14 +26,6 @@ footer{
     grid-template-rows: repeat(12,1fr);
 }
 
-.square, .changeTimeBtn, .timeLabel{
-    background-color: rgb(83, 83, 83);
-    color: white;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-}
-
 header{
     grid-row-start:2;
     grid-row-end:4;
@@ -55,6 +47,24 @@ header{
     grid-row-end:6;
     grid-column-start:3;
     grid-column-end:6;
+}
+
+.square, .changeTimeBtn, .timeLabel{
+    background-color: rgb(83, 83, 83);
+    color: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#sessionDecreaseTimeBtn, #sessionIncreaseTimeBtn,
+#breakDecreaseTimeBtn, #breakIncreaseTimeBtn
+{
+    height: 90%;
+    width: 90%;
+    align-self: center;
+    text-align: center;
+    align-items: center;
 }
 
 .squareLabel{
@@ -135,4 +145,9 @@ header{
     grid-row-end:4;
     grid-column-start:10;
     grid-column-end:13;
+}
+
+#startBtn, #stopBtn, #resetBtn, #pauseBtn{
+    height: 90%;
+    width: 80%;
 }

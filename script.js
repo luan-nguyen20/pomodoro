@@ -27,11 +27,29 @@ function displayTime(timeArr){
     mainTimeLabel.textContent = padded(timeArr[0]) + ':' + padded(timeArr[1]) + ':' + padded(timeArr[2]);
 }
 
-let sessionMins = 0.17; // 10 secs
-let breakMins = 0.09; // 5 secs
+let sessionMins = 1;
+let breakMins = 1;
 let remainHoursStr = '00';
 let remainMinsStr = '00';
 let remainSecsStr = '00';
+
+const sessionDecreaseTimeBtn = document.querySelector("#sessionDecreaseTimeBtn");
+const sessioIncreaseTimeBtn = document.querySelector("#sessionIncreaseTimeBtn");
+const breakDecreaseTimeBtn = document.querySelector("#breakDecreaseTimeBtn");
+const breakIncreaseTimeBtn = document.querySelector("#breakIncreaseTimeBtn");
+const sessionTimeLabel = document.querySelector("#sessionTimeLabel");
+const breakTimeLabel = document.querySelector("#breakTimeLabel");
+
+function updateSessionTimeLabel(){
+    sessionTimeLabel.textContent = sessionMins;
+}
+
+function updateBreakTimeLabel(){
+    breakTimeLabel.textContent = breakMins;
+}
+
+updateSessionTimeLabel();
+updateBreakTimeLabel();
 
 const startBtn = document.querySelector("#startBtn");
 const stopBtn = document.querySelector("#stopBtn");
@@ -151,16 +169,18 @@ function pauseCountDown(){
     finished = false;
 }
 
-startBtn.addEventListener('click', function(){
-    startCountDown();
-});
+startBtn.addEventListener('click', startCountDown);
+stopBtn.addEventListener('click', stopCountDown);
+pauseBtn.addEventListener('click', pauseCountDown);
 
-stopBtn.addEventListener('click', function(){
-    stopCountDown();
-});
+function decreaseSessionTime(){
+    if(sessionMins > 1){ sessionMins--; }
+    updateSessionTimeLabel();
+}
 
-pauseBtn.addEventListener('click', function(){
-    pauseCountDown();
-});
+sessionDecreaseTimeBtn.addEventListener('click',decreaseSessionTime);
+sessionIncreaseTimeBtn.addEventListener('click',);
+breakDecreaseTimeBtn.addEventListener('click',);
+breakIncreaseTimeBtn.addEventListener('click',);
 
 

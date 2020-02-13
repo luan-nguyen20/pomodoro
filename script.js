@@ -40,6 +40,30 @@ const breakIncreaseTimeBtn = document.querySelector("#breakIncreaseTimeBtn");
 const sessionTimeLabel = document.querySelector("#sessionTimeLabel");
 const breakTimeLabel = document.querySelector("#breakTimeLabel");
 
+function disableSessionDecreaseBtn(){ sessionDecreaseTimeBtn.disabled = true; }
+function disableSessionIncreaseBtn(){ sessionIncreaseTimeBtn.disabled = true; }
+function disableBreaknDecreaseBtn(){ breakDecreaseTimeBtn.disabled = true; }
+function disableBreakIncreaseBtn(){ breakIncreaseTimeBtn.disabled = true; }
+
+function enableSessionDecreaseBtn(){ sessionDecreaseTimeBtn.disabled = false; }
+function enableSessionIncreaseBtn(){ sessionIncreaseTimeBtn.disabled = false; }
+function enableBreakDecreaseBtn(){ breakDecreaseTimeBtn.disabled = false; }
+function enableBreakIncreaseBtn(){ breakIncreaseTimeBtn.disabled = false; }
+
+function disableTimeChange(){
+    disableSessionDecreaseBtn();
+    disableSessionIncreaseBtn();
+    disableBreaknDecreaseBtn();
+    disableBreakIncreaseBtn();
+}
+
+function enableTimeChange(){
+    enableSessionDecreaseBtn();
+    enableSessionIncreaseBtn();
+    enableBreaknDecreaseBtn();
+    enableBreakIncreaseBtn();
+}
+
 function updateSessionTimeLabel(){
     sessionTimeLabel.textContent = sessionMins;
 }
@@ -94,6 +118,7 @@ function countDown(sessionOrBreakStr){
             disableStartBtn();
             enablePauseBtn();
             enableStopBtn();
+            disableTimeChange();
         }
 
         if(finished===true){
@@ -103,6 +128,7 @@ function countDown(sessionOrBreakStr){
             disablePauseBtn();
             disableStopBtn();
             enableStartBtn();
+            enableTimeChange();
             return;
         }
 
@@ -115,6 +141,7 @@ function countDown(sessionOrBreakStr){
             disablePauseBtn();
             enableStartBtn();
             enableStopBtn();
+            disableTimeChange();
         }
 
         let now = new Date().getTime();

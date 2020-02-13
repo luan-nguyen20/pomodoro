@@ -19,7 +19,23 @@ let remainSecsStr = '00';
 const mainTimeLabel = document.querySelector("#mainTimeLabel");
 const mainSquareLabel = document.querySelector("#mainSquareLabel");
 
-let finished = false;
+const startBtn = document.querySelector("#startBtn");
+const stopBtn = document.querySelector("#stopBtn");
+const pauseBtn = document.querySelector("#pauseBtn");
+
+function disableStartBtn(){ startBtn.disabled = true;}
+function disablePauseBtn(){ pauseBtn.disabled = true;}
+function disableStopBtn(){ stopBtn.disabled = true;}
+
+function enableStartBtn(){ startBtn.disabled = false;}
+function enablePauseBtn(){ pauseBtn.disabled = false;}
+function enableStopBtn(){ stopBtn.disabled = false;}
+
+disablePauseBtn();
+disableStopBtn();
+
+let playing = false;
+let finished = true;
 let paused = false;
 
 function countDown(sessionOrBreakStr){
@@ -43,11 +59,32 @@ function countDown(sessionOrBreakStr){
 
     // Update the count down every 1 second
     let x = setInterval(function() {
+        if(playing===true){
+            disableStartBtn();
+            enablePauseBtn();
+            enableStopBtn();
+        }
+
         if(finished===true){
+            clearInterval(x);
             mainTimeLabel.textContent = '00:00:00';
             mainSquareLabel.textContent = 'SESSION/BREAK';
-            clearInterval(x);
+            disablePauseBtn();
+            disableStopBtn();
+            enableStartBtn();
             return;
+        }
+
+        //if paused, store remaining hours, mins, secs and clear interval
+        if(paused===true){
+            clearInterval(x);
+            remainHoursStr = mainTimeLabel.textContent.substring(0,2);
+            remainMinsStr = mainTimeLabel.textContent.substring(3,5);
+            remainSecsStr = mainTimeLabel.textContent.substring(6,8);
+            disablePauseBtn();
+            enableStartBtn();
+            enableStopBtn();
+            console.log(remainHoursStr + ' ' + remainMinsStr + ' ' + remainSecsStr);
         }
 
         var now = new Date().getTime();
@@ -59,15 +96,6 @@ function countDown(sessionOrBreakStr){
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        //if paused, store remaining hours, mins, secs and clear interval
-        if(paused===true){
-            remainHoursStr = mainTimeLabel.textContent.substring(0,2);
-            remainMinsStr = mainTimeLabel.textContent.substring(3,5);
-            remainSecsStr = mainTimeLabel.textContent.substring(6,8);
-            console.log(remainHoursStr + ' ' + remainMinsStr + ' ' + remainSecsStr);
-            clearInterval(x);
-        }
 
         // Display the result in main time label
         mainTimeLabel.textContent = padded(hours) + ":" + padded(minutes) + ":" + padded(seconds);
@@ -89,6 +117,7 @@ function countDown(sessionOrBreakStr){
 
 //if paused, count down with remainMins, else countdown with sessionMins
 function startCountDown(){
+    playing = true;
     finished = false;
     if(paused===true){
         paused = false;
@@ -101,24 +130,25 @@ function startCountDown(){
 
 function stopCountDown(){
     startCountDown();
+    playing = false;
+    paused = false;
     finished = true;
 }
 
 function pauseCountDown(){
     paused = true;
+    playing = false;
+    finished = false;
 }
 
-const startBtn = document.querySelector("#startBtn");
 startBtn.addEventListener('click', function(){
     startCountDown();
 });
 
-const stopBtn = document.querySelector("#stopBtn");
 stopBtn.addEventListener('click', function(){
     stopCountDown();
 });
 
-const pauseBtn = document.querySelector("#pauseBtn");
 pauseBtn.addEventListener('click', function(){
     pauseCountDown();
 });

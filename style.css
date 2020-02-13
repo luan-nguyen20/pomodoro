@@ -7,6 +7,13 @@ html{
     background-color: lightblue;
 }
 
+footer{
+    text-align: right;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
 .wrapper{
     display: grid;
     align-items: center;

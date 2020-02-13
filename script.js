@@ -10,14 +10,28 @@ function padded(num){
     return paddedNumStr;
 }
 
-let sessionMins = 0.2;
-let breakMins = 0.1;
+const mainTimeLabel = document.querySelector("#mainTimeLabel");
+const mainSquareLabel = document.querySelector("#mainSquareLabel");
+
+//take time in millisecs and return timeArr[hours, mins, secs]
+function calcTimeFromMilliSecs(millisecs){
+    let hours = Math.floor((millisecs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((millisecs % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((millisecs % (1000 * 60)) / 1000);
+    let timeArr = [hours,minutes,seconds];
+    return timeArr;
+}
+
+//take an arr[hours,mins,secs] and display it in mainTimeLabel
+function displayTime(timeArr){
+    mainTimeLabel.textContent = padded(timeArr[0]) + ':' + padded(timeArr[1]) + ':' + padded(timeArr[2]);
+}
+
+let sessionMins = 0.17; // 10 secs
+let breakMins = 0.09; // 5 secs
 let remainHoursStr = '00';
 let remainMinsStr = '00';
 let remainSecsStr = '00';
-
-const mainTimeLabel = document.querySelector("#mainTimeLabel");
-const mainSquareLabel = document.querySelector("#mainSquareLabel");
 
 const startBtn = document.querySelector("#startBtn");
 const stopBtn = document.querySelector("#stopBtn");
@@ -52,7 +66,6 @@ function countDown(sessionOrBreakStr){
     }
     else if(sessionOrBreakStr.toUpperCase()==='REMAIN'){
         countDownMins = parseInt(remainMinsStr) + parseInt(remainHoursStr)*60 + parseInt(remainSecsStr)/60;
-        console.log('mins: ' + countDownMins);
     }
 
     let deadline = now + countDownMins*60000; //now + countdown mins in millisecs
@@ -84,21 +97,18 @@ function countDown(sessionOrBreakStr){
             disablePauseBtn();
             enableStartBtn();
             enableStopBtn();
-            console.log(remainHoursStr + ' ' + remainMinsStr + ' ' + remainSecsStr);
         }
 
-        var now = new Date().getTime();
+        let now = new Date().getTime();
 
         // Find the distance between now and the deadline (in millisecs)
-        var distance = deadline - now;
+        let distance = deadline - now;
 
         // Time calculations for hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        let timeArr = calcTimeFromMilliSecs(distance);
 
         // Display the result in main time label
-        mainTimeLabel.textContent = padded(hours) + ":" + padded(minutes) + ":" + padded(seconds);
+        displayTime(timeArr);
 
         // If session/break count down is finished, switch to break/session countdown
         if (distance < 0) {

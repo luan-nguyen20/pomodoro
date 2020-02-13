@@ -27,8 +27,14 @@ function displayTime(timeArr){
     mainTimeLabel.textContent = padded(timeArr[0]) + ':' + padded(timeArr[1]) + ':' + padded(timeArr[2]);
 }
 
-let sessionMins = 1;
-let breakMins = 1;
+let maxSessionMins = 120;
+let minSessionMins = 1;
+let maxBreakMins = 60;
+let minBreakMins = 1;
+let defaultSessionMins = 25;
+let defaultBreakMins = 5;
+let sessionMins = defaultSessionMins;
+let breakMins = defaultBreakMins;
 let remainHoursStr = '00';
 let remainMinsStr = '00';
 let remainSecsStr = '00';
@@ -201,13 +207,28 @@ stopBtn.addEventListener('click', stopCountDown);
 pauseBtn.addEventListener('click', pauseCountDown);
 
 function decreaseSessionTime(){
-    if(sessionMins > 1){ sessionMins--; }
+    if(sessionMins > minSessionMins){ sessionMins--; }
     updateSessionTimeLabel();
 }
 
+function increaseSessionTime(){
+    if(sessionMins < maxSessionMins){ sessionMins++; }
+    updateSessionTimeLabel();
+}
+
+function decreaseBreakTime(){
+    if(breakMins > minBreakMins){ breakMins--; }
+    updateBreakTimeLabel();
+}
+
+function increaseBreakTime(){
+    if(breakMins > minBreakMins){ breakMins++; }
+    updateBreakTimeLabel();
+}
+
 sessionDecreaseTimeBtn.addEventListener('click',decreaseSessionTime);
-sessionIncreaseTimeBtn.addEventListener('click',);
-breakDecreaseTimeBtn.addEventListener('click',);
-breakIncreaseTimeBtn.addEventListener('click',);
+sessionIncreaseTimeBtn.addEventListener('click',increaseSessionTime);
+breakDecreaseTimeBtn.addEventListener('click',decreaseBreakTime);
+breakIncreaseTimeBtn.addEventListener('click',increaseBreakTime);
 
 

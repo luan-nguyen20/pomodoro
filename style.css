@@ -5,6 +5,7 @@ html, body{
 
 html{
     background-color: lightblue;
+    background-image: linear-gradient(to right, rgb(97, 95, 94) , rgb(219, 219, 219));
 }
 
 footer{

@@ -70,6 +70,7 @@ header{
     text-align: center;
     align-items: center;
     font-size: 1vw;
+    border-radius:20px
 }
 
 .squareLabel{
@@ -185,4 +186,5 @@ header{
     text-align: center;
     align-items: center;
     font-size: 2rem;
+    border-radius:20px
 }

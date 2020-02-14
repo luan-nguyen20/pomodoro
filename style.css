@@ -79,6 +79,14 @@ header{
     grid-column-end:4;
 }
 
+#sessionTimeLabel, #breakTimeLabel {
+    font-size:2vw;
+}
+
+#sessionSquareLabel, #breakSquareLabel{
+    font-size:1.5vw;
+}
+
 #breakSquare{
     display: grid;
     grid-template-columns: repeat(3,1fr);

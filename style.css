@@ -94,6 +94,14 @@ header{
     grid-column-end:11;
 }
 
+#sessionSquareLabel, #breakSquareLabel{
+    font-size:2vw;
+}
+
+#sessionTimeLabel, #breakTimeLabel{
+    font-size:2vw;
+}
+
 #mainSquare{
     display: grid;
     padding: 5px 5px;
@@ -117,7 +125,7 @@ header{
     grid-row-end:2;
     grid-column-start:1;
     grid-column-end:13;
-    font-size: 2rem;
+    font-size: 3vw;
     font-weight:bold;
 }
 
@@ -126,7 +134,7 @@ header{
     grid-row-end:3;
     grid-column-start:1;
     grid-column-end:13;
-    font-size: 2.2rem;
+    font-size: 6vw;
     font-weight:bold;
 }
 

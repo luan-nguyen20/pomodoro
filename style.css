@@ -79,14 +79,6 @@ header{
     grid-column-end:4;
 }
 
-#sessionTimeLabel, #breakTimeLabel {
-    font-size:2vw;
-}
-
-#sessionSquareLabel, #breakSquareLabel{
-    font-size:1.5vw;
-}
-
 #breakSquare{
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -112,8 +104,8 @@ header{
     text-align: center;
     height: 100%;
     width: 100%;
-    grid-row-start:8;
-    grid-row-end:13;
+    grid-row-start:6;
+    grid-row-end:11;
     grid-column-start:3;
     grid-column-end:11;
     border-radius: 10px;
@@ -125,7 +117,7 @@ header{
     grid-row-end:2;
     grid-column-start:1;
     grid-column-end:13;
-    font-size: 3vw;
+    font-size: 2rem;
     font-weight:bold;
 }
 
@@ -134,7 +126,7 @@ header{
     grid-row-end:3;
     grid-column-start:1;
     grid-column-end:13;
-    font-size: 5vw;
+    font-size: 2.2rem;
     font-weight:bold;
 }
 

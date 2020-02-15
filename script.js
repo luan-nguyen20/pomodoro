@@ -10,6 +10,9 @@ function padded(num){
     return paddedNumStr;
 }
 
+const breakSFX = new Audio('audio/cat2.wav');
+const sessionSFX = new Audio('audio/winGame.wav');
+
 const mainTimeLabel = document.querySelector("#mainTimeLabel");
 const mainSquareLabel = document.querySelector("#mainSquareLabel");
 
@@ -168,10 +171,12 @@ function countDown(sessionOrBreakStr){
             if(mainSquareLabel.textContent==='SESSION'){
                 mainTimeLabel.textContent = '00:00:00';
                 countDown('break');
+                breakSFX.play();
             }
             else if(mainSquareLabel.textContent==='BREAK'){
                 mainTimeLabel.textContent = '00:00:00';
                 countDown('session');
+                sessionSFX.play();
             }
         }
     },1000)
@@ -203,7 +208,10 @@ function pauseCountDown(){
     finished = false;
 }
 
-startBtn.addEventListener('click', startCountDown);
+startBtn.addEventListener('click', function(){
+    sessionSFX.play();
+    startCountDown();
+});
 stopBtn.addEventListener('click', stopCountDown);
 pauseBtn.addEventListener('click', pauseCountDown);
 

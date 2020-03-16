@@ -188,3 +188,17 @@ header{
     font-size: 2rem;
     border-radius:20px
 }
+
+/* Smartphones & iPads (landscape)----------- */
+@media only screen
+and (min-device-width : 568px)
+and (max-device-width : 1024px){
+    .square, .changeTimeBtn, .timeLabel{
+        font-size: 1rem;
+    }
+
+    #mainSquareLabel{
+        font-size: 1rem;
+    }
+}
+/***************************************************/
